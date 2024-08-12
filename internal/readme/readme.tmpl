@@ -1,0 +1,27 @@
+# {{ .metadata.name }}
+
+### url
+{{ GetUrl }}
+
+### Version
+Current version is: {{ index .metadata.labels "app.kubernetes.io/version" }}
+
+## Description
+{{ .spec.description }}
+
+### Params
+| Name | Description | Type | Default |
+|------|-------------|------|---------|
+{{ range .spec.params -}}
+| `{{ .name }}` | {{ .description }} | {{ .type }} | {{ .default }} |
+{{ end }}
+
+### Results
+| Name | Description | Type |
+|------|-------------|------|
+{{ range .spec.results -}}
+| {{ .name }} | {{ .description }} | {{ .type }}
+{{ end }}
+
+### Changelog
+{{ Versions }}
